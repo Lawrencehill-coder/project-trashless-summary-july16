@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Project Trashless — One-Page Summary</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink:#14213D;
+    --text:#1F2430;
+    --paper:#FAF9F6;
+    --panel:#FFFFFF;
+    --bronze:#A8823C;
+    --bronze-dark:#8A6A2E;
+    --flag:#8C2F2F;
+    --flag-bg:#FBF1EF;
+    --rule:#D8D4CB;
+    --muted:#5B6270;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:13px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .print-bar{
+    max-width:1000px;
+    margin:0 auto;
+    padding:14px 24px 0;
+    display:flex;
+    justify-content:flex-end;
+  }
+  .print-btn{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    background:var(--ink);
+    color:#EDE8DD;
+    border:1px solid var(--ink);
+    padding:9px 16px;
+    border-radius:2px;
+    cursor:pointer;
+  }
+  .print-btn:hover{background:var(--bronze-dark); border-color:var(--bronze-dark);}
+
+  .sheet{
+    max-width:1000px;
+    margin:14px auto 40px;
+    background:var(--panel);
+    border:1px solid var(--rule);
+    padding:34px 38px;
+  }
+
+  .head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:14px;
+    margin-bottom:16px;
+  }
+  .head h1{
+    font-family:'Newsreader',serif;
+    font-weight:600;
+    font-size:26px;
+    margin:0 0 4px;
+    color:var(--ink);
+  }
+  .head .sub{
+    font-family:'Newsreader',serif;
+    font-style:italic;
+    font-size:13.5px;
+    color:var(--muted);
+    margin:0;
+  }
+  .head .stamp{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--bronze-dark);
+    border:1px solid rgba(168,130,60,.5);
+    padding:3px 8px;
+    border-radius:2px;
+    white-space:nowrap;
+  }
+  .meta{
+    text-align:right;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    color:var(--muted);
+    line-height:1.6;
+  }
+  .meta strong{color:var(--ink); display:block; font-size:10.5px;}
+
+  .glance{
+    display:flex;
+    border:1px solid var(--rule);
+    margin-bottom:20px;
+  }
+  .glance div{
+    flex:1;
+    text-align:center;
+    padding:12px 8px;
+    border-right:1px solid var(--rule);
+  }
+  .glance div:last-child{border-right:none;}
+  .glance .num{
+    font-family:'Newsreader',serif;
+    font-weight:600;
+    font-size:18px;
+    color:var(--ink);
+    display:block;
+  }
+  .glance .lbl{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:8.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    display:block;
+    margin-top:2px;
+  }
+
+  .cols{
+    display:grid;
+    grid-template-columns:1.15fr 1fr;
+    gap:26px;
+  }
+
+  h2{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--bronze-dark);
+    border-bottom:1px solid var(--rule);
+    padding-bottom:5px;
+    margin:0 0 8px;
+  }
+  section{margin-bottom:16px;}
+  p{margin:0 0 8px; font-size:12.5px;}
+
+  table{width:100%; border-collapse:collapse; font-size:12px; margin-bottom:4px;}
+  td{padding:4px 0; border-bottom:1px solid var(--rule);}
+  td.num{text-align:right; font-family:'IBM Plex Mono',monospace; white-space:nowrap;}
+  tr:last-child td{border-bottom:1px solid var(--ink); font-weight:600;}
+
+  ul{margin:0; padding-left:16px;}
+  li{margin-bottom:5px; font-size:12.5px;}
+
+  .flag-box{
+    background:var(--flag-bg);
+    border-left:3px solid var(--flag);
+    padding:9px 12px;
+    font-size:11.5px;
+  }
+  .flag-box strong{color:var(--flag); font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  .reco-box{
+    background:#FBF7EE;
+    border-left:3px solid var(--bronze);
+    padding:9px 12px;
+    font-size:11.5px;
+  }
+  .reco-box strong{color:var(--bronze-dark); font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; display:block; margin-bottom:4px;}
+
+  footer{
+    border-top:1px solid var(--rule);
+    margin-top:18px;
+    padding-top:10px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:8.5px;
+    color:var(--muted);
+    line-height:1.6;
+  }
+
+  @media print{
+    .print-bar{display:none;}
+    body{background:#fff;}
+    .sheet{border:none; margin:0; padding:0;}
+  }
+  @media(max-width:700px){
+    .cols{grid-template-columns:1fr;}
+    .head{flex-direction:column; gap:10px;}
+    .meta{text-align:left;}
+  }
+</style>
+</head>
+<body>
+
+<div class="print-bar">
+  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="sheet">
+
+  <div class="head">
+    <div>
+      <span class="stamp">Confidential — Discussion Draft</span>
+      <h1>Project Trashless</h1>
+      <p class="sub">Santa Rosa Circular Economy Campus — One-Page Summary</p>
+    </div>
+    <div class="meta">
+      <strong>Lawrence Hill</strong>
+      Sr. Manager, Structured Finance &amp; Capital Solutions, Pedison USA<br>
+      Presented to Dickson Ewemade &amp; Committee<br>
+      July 16, 2026
+    </div>
+  </div>
+
+  <div class="glance">
+    <div><span class="num">608</span><span class="lbl">Acres</span></div>
+    <div><span class="num">$7M</span><span class="lbl">Current LOI</span></div>
+    <div><span class="num">$65M</span><span class="lbl">Capital Ask</span></div>
+    <div><span class="num">$82–109M</span><span class="lbl">Proj. Revenue/Yr</span></div>
+    <div><span class="num">~47%</span><span class="lbl">Proj. EBITDA*</span></div>
+  </div>
+
+  <div class="cols">
+    <div>
+
+      <section>
+        <h2>The Opportunity</h2>
+        <p>Agvisors holds a $7M LOI on the former Rio Grande Valley Sugar Growers mill site in Santa Rosa, Texas — 608 acres with existing mill infrastructure, rail access, and heavy industrial capacity. The concept, Project Trashless, converts the site into a zero-waste recycling campus (shingles, tires, plastics) paired with a senior RV/cottage-home resort on the agricultural acreage.</p>
+      </section>
+
+      <section>
+        <h2>Business Model — Projected Annual Revenue</h2>
+        <table>
+          <tr><td>Plastic-to-fuel</td><td class="num">$56M</td></tr>
+          <tr><td>Char refining</td><td class="num">$16–30M</td></tr>
+          <tr><td>Tipping fees</td><td class="num">$5–8M</td></tr>
+          <tr><td>Material recovery</td><td class="num">$2–5M</td></tr>
+          <tr><td>Carbon credits</td><td class="num">$3–10M</td></tr>
+          <tr><td>Total</td><td class="num">$82–109M</td></tr>
+        </table>
+        <p style="font-size:10.5px; color:var(--muted); margin-top:4px;">All figures are sponsor estimates; unaudited and not independently verified.</p>
+      </section>
+
+      <section>
+        <h2>Capital Structure</h2>
+        <p>$65M startup capital required. Sponsor offers up to 40% equity, stated tax advantages, optional board seat, and carbon offset rights. An offshore (Philippines-based) investor has committed $8M toward acquisition; sponsor prefers to co-fund the balance directly.</p>
+      </section>
+
+    </div>
+    <div>
+
+      <section>
+        <h2>My Proposed Role — Pedison USA</h2>
+        <p>Phase II (development financing and capital raise) sits within our wheelhouse, and we can perform if engaged. My preference is a full-principals second discovery call to determine whether Pedison should also join on the acquisition side, leading with Branding first so capital is raised correctly. Pedison will explore funding the entire deal.</p>
+        <div class="reco-box">
+          <strong>Recommendation</strong>
+          Lead with Branding before any other phase — this is what makes Structuring and Capital Raise work properly, consistent with our Three-Service Doctrine and Allion Fund I's real-estate mandate.
+        </div>
+      </section>
+
+      <section>
+        <h2>Key Diligence Items</h2>
+        <div class="flag-box">
+          <strong>Open before proceeding</strong>
+          <ul>
+            <li>PPM is self-authored; not yet reviewed by securities counsel for this offering</li>
+            <li>No S-1 or equivalent registration filed to date</li>
+            <li>Offshore investor's identity and source of funds unverified</li>
+            <li>"Agvisors" not confirmed as a registered entity; Robert Jones bio unverified</li>
+            <li>2019 appraisal ($42.1M) is dated; needs refresh</li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <footer>
+    PREPARED FROM INTERNAL CALL NOTES AND SPONSOR-PROVIDED MATERIALS DATED JULY 16, 2026. NOT AN OFFER TO SELL OR A SOLICITATION OF AN OFFER TO BUY ANY SECURITY. ALL PROJECTIONS ARE SPONSOR ESTIMATES, UNAUDITED, AND SUBJECT TO CHANGE. *EBITDA MARGIN PER SPONSOR, ON PROJECTED FIGURES. FOR INTERNAL PEDISON USA DISCUSSION ONLY. SEE FULL DEAL MEMORANDUM FOR COMPLETE DETAIL AND SOURCING.
+  </footer>
+
+</div>
+</body>
+</html>
